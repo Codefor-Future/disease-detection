@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Upload Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/public/css/index.css">
+</head>
+
+<body>
+    <div id="app" class="w-screen min-h-screen flex flex-col justify-center items-center">
+        <!-- Template rendering -->
+        <!-- <h1 class="text-blue-500">{{utc_dt}}</h1>  -->
+        <div class="fixed top-0 w-full py-5 px-10">
+            <div class="text-gray-100 font-bold">
+                Project name
+            </div>
+        </div>
+        <div class="text-4xl font-bold text-white mb-5">Heading</div>
+        <label for="file-upload"
+            class="inline-block px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow-sm hover:bg-gray-300 focus:bg-gray-300">
+            <svg class="inline-block w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                    d="M13 7h-2V5c0-1.1-.9-2-2-2s-2 .9-2 2v2H7c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-4-2c0-.6.4-1 1-1s1 .4 1 1v2h-2V5zm4 10c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v4z"
+                    clip-rule="evenodd" />
+            </svg>
+            <span>Try now</span>
+        </label>
+        <input id="file-upload" class="hidden" type="file" accept="image/*" capture="camera" @change="handleFileUpload">
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            methods: {
+                handleFileUpload(event) {
+                    const file = event.target.files[0];
+                    const formData = new FormData();
+                    formData.append('image', file);
+
+                    axios.post('/upload', formData)
+                        .then(response => {
+                            // Do something with the response, such as display a success message
+                            console.log(response.data);
+                        })
+                        .catch(error => {
+                            // Handle the error, such as displaying an error message
+                            console.error(error);
+                        });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
