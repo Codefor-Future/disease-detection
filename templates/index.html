@@ -39,12 +39,12 @@
                 handleFileUpload(event) {
                     const file = event.target.files[0];
                     const formData = new FormData();
-                    formData.append('image', file);
+                    formData.append('file', file);
 
-                    axios.post('/upload', formData)
+                    axios.post('/process_image', formData)
                         .then(response => {
                             // Do something with the response, such as display a success message
-                            console.log(response.data);
+                            console.log(response);
                         })
                         .catch(error => {
                             // Handle the error, such as displaying an error message

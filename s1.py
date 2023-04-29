@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the input image
-path = "p1.jpg"
+path = "image.jpg"
 img = cv2.imread(path, 1)
 
 cv2.imshow('img',img)
@@ -34,9 +34,15 @@ plt.imshow(masked_img1)
 plt.show()
 
 # Display the results
-cv2.imshow('Input', img)
-cv2.imshow('Thresholded', thresh)
-cv2.imshow('Closing', closing)
-cv2.imshow('Mask', mask)
-cv2.imshow('Masked Image', masked_img)
+# cv2.imshow('Input', img)
+# cv2.imshow('Thresholded', thresh)
+# cv2.imshow('Closing', closing)
+# cv2.imshow('Mask', mask)
+# cv2.imshow('Masked Image', masked_img)
+
+cv2.imwrite('Mask.png', mask)
+cv2.imwrite('Thresholded.png', thresh)
+cv2.imwrite('Closing.png', closing)
+cv2.imwrite('MaskedImage.png', masked_img)
+
 cv2.waitKey(0)
