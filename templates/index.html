@@ -30,7 +30,7 @@
             </svg>
             <span>Try now</span>
         </label>
-        <input id="file-upload" class="hidden" type="file" accept="image/*" capture="camera" @change="handleFileUpload">
+        <input id="file-upload" class="hidden" type="file" accept="image/*" @change="handleFileUpload">
     </div>
     <script>
         new Vue({
@@ -45,6 +45,7 @@
                         .then(response => {
                             // Do something with the response, such as display a success message
                             console.log(response);
+                            window.location.href='result'
                         })
                         .catch(error => {
                             // Handle the error, such as displaying an error message

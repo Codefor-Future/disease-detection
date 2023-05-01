@@ -37,10 +37,10 @@ def process_image():
     gaussian = cv2.GaussianBlur(img, (3,3), 0)
     
     # buffer = io.BytesIO()
-    cv2.imwrite('step1output.png', gaussian)
+    cv2.imwrite('public/images/step1output.png', gaussian)
     
     # step 2
-    path = "step1output.png"
+    path = "public/images/step1output.png"
     img = cv2.imread(path, 1)
 
     # Convert the image to grayscale
@@ -65,17 +65,21 @@ def process_image():
 
     # Apply the mask to the input image
     masked_img = cv2.bitwise_and(img, img, mask=mask_resized)
-    cv2.imwrite('step2output.png', masked_img)
+    cv2.imwrite('public/images/step2output.png', masked_img)
 
     # cv2.imshow('Masked Image', masked_img)
     
     # Reset the buffer to the beginning and return the file for download
     # buffer.seek(0)
-    return send_file('step2output.png', as_attachment=True)
+    return send_file('public/images/step2output.png', as_attachment=True)
 
 @app.route('/')
 def hello():
     return render_template('index.html', utc_dt=datetime.datetime.utcnow())
+
+@app.route('/result')
+def result():
+    return render_template('result.html', utc_dt=datetime.datetime.utcnow())
 
 
 @app.route('/upload', methods=['POST'])
