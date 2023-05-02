@@ -45,7 +45,7 @@
                         .then(response => {
                             // Do something with the response, such as display a success message
                             console.log(response);
-                            window.location.href='result'
+                            window.location.href=`result?nn=${response.data.nn}&nn_pro=${response.data.nnPro}&svm=${response.data.svm[0]}`
                         })
                         .catch(error => {
                             // Handle the error, such as displaying an error message

@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Result</title>
 </head>
 
@@ -40,26 +43,60 @@
             }
         }
     </style>
-    <div class="container">
-        <div class="se">
-            <label for="step1">Step1 name</label> <br>
-            <img id="step2" src="public/images/step1output.png" alt="">
+    <div id="app">
+        <div>
+            <div id="nn">
+                Predicted class label using Neural Network: {{nn}}
+            </div>
+            <div id="svm">
+                Predicted class label using Neural Network: {{nn}}
+            </div>
         </div>
-        <div class="se">
-            <label for="step2">Step2 name</label> <br>
-            <img src="public/images/step2output.png" alt="">
+        <div class="container">
+            <div class="se">
+                <label for="step1">Gaussian</label> <br>
+                <img id="step2" src="public/images/gaussian.png" alt="">
+            </div>
+            <div class="se">
+                <label for="step2">Infected Area</label> <br>
+                <img src="public/images/segmentation.png" alt="">
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="se">
-            <label for="step1">Step1 name</label> <br>
-            <img id="step2" src="public/images/step1output.png" alt="">
+        <div class="container">
+            <div class="se">
+                <label for="step1">Mask</label> <br>
+                <img id="step2" src="public/images/mask.png" alt="">
+                <!-- </div>
+            <div class="se">
+                <label for="step2">Step2 name</label> <br>
+                <img src="public/images/step2output.png" alt="">
+            </div> -->
+            </div>
         </div>
-        <div class="se">
-            <label for="step2">Step2 name</label> <br>
-            <img src="public/images/step2output.png" alt="">
-        </div>
-    </div>
+        <script>
+            new Vue({
+                el: '#app',
+                mounted () {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    this.nn = urlParams.get('nn');
+                    this.nnPro = urlParams.get('nn_pro');
+                    this.svm = urlParams.get('svm');
+                    console.log(urlParams.get('svm'))
+                    document.getElementById('nn').innerHTML= `Predicted class label using Neural Network: ${urlParams.get('nn')} with probability: ${urlParams.get('nn_pro')}`
+                    document.getElementById('svm').innerHTML= `Predicted class label using svm: ${urlParams.get('svm')}.`
+                },
+                data: function () {
+                    return {
+                        nn: 'nn',
+                        nnPro: '',
+                        svm: ''
+                    };
+                },
+                methods: {
+
+                }
+            }).$mount('#app');
+        </script>
 </body>
 
 </html>
