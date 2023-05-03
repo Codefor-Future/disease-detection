@@ -38,7 +38,7 @@ def process_image():
     # Read the image from the file
     img = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
     # gaussian = cv2.GaussianBlur(img, (3,3), 0)
-    
+    cv2.imwrite('public/images/input.png', img)
     # # buffer = io.BytesIO()
     # cv2.imwrite('public/images/step1output.png', gaussian)
     
