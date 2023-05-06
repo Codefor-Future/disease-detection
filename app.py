@@ -12,6 +12,7 @@ from scipy.stats import entropy
 
 app = Flask(__name__, static_folder='public')
 
+# test
 @app.route('/public/<path:path>')
 def serve_static_files(path):
     return send_from_directory('public', path)
