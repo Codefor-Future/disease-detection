@@ -93,7 +93,7 @@
                 this.svm = urlParams.get('svm');
                 console.log(urlParams.get('svm'))
                 // document.getElementById('nn').innerHTML = `Predicted class label using Neural Network: <span class="text-lg font-bold">${urlParams.get('nn')}</span><br>Probability: ${urlParams.get('nn_pro')}%`
-                document.getElementById('svm').innerHTML = `Predicted class label using svm: <span class="text-lg font-bold">${urlParams.get('svm')}</span>`
+                document.getElementById('svm').innerHTML = `Infected disease: <span class="text-lg font-bold">${urlParams.get('svm')}</span>`
                 document.getElementById('gaussian').src = `public/images/gaussian.png?id=${Math.random()}`
                 document.getElementById('seg').src = `public/images/segmentation.png?id=${Math.random()}`
                 document.getElementById('mask').src = `public/images/mask.png?id=${Math.random()}`
